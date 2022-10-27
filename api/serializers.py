@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from .models import Post
+from .models import Category
 
 
-class PostSerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Post
+        model = Category
         fields = (
-            "id",
-            "title",
-            "content",
+            "gender",
+            "question",
+            "degree",
         )

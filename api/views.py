@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from rest_framework import generics
-from .models import Post
-from .serializers import PostSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import Category
+from .serializers import CategorySerializer
 
 
-class PostListAPIView(generics.ListAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+class CategoryProcess(APIView):
+    def post(self, request):
+        print(request.data)
+        return Response(request.data)
