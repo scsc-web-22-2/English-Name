@@ -10,3 +10,5 @@
 	
 	git에 관한 기본적인 개념들이 잘 나와 있는 사이트 공유드려요!
 	https://backlog.com/git-tutorial/kr/intro/intro1_1.html
+	
+10.27 노션에 제가 생각한 아이디어들 정리해서 공유해 놓았어요. 대분류 api는 현재 만들고 있습니다...
