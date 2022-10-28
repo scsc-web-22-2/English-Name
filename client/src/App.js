@@ -14,6 +14,8 @@ function App() {
           전혀 그렇지 않다
           <input type="radio" name="degree" value="-1" />
           그렇지 않다
+          <input type="radio" name="degree" value="0" />
+          보통이다
           <input type="radio" name="degree" value="1" />
           그렇다
           <input type="radio" name="degree" value="2" />
