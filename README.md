@@ -20,6 +20,5 @@
 
 #11.05
 푸쉬1
-- client 에 style-component 설치 → Global style.js 생성
 - client에 react-router-dom 설치 → Router.js로 page url에 나누고, App.js에 Router컴포넌트를 올려놨습니다.
 - 기존에 App.js에 있던 form은 Test.js에 옮겼습니다.
