@@ -17,3 +17,9 @@
 #10.27 노션에 제가 생각한 아이디어들 정리해서 공유해 놓았어요. 대분류 api는 현재 만들고 있습니다...
 
 #11.03 대분류 api 완성되었어요. 전체 디렉토리에서 >pipenv install numpy 해주세요. 프론트 상에서 질문 input태그의 name, value는 똑같이 해주시면 됩니다
+
+#11.05
+푸쉬1
+- client 에 style-component 설치 → Global style.js 생성
+- client에 react-router-dom 설치 → Router.js로 page url에 나누고, App.js에 Router컴포넌트를 올려놨습니다.
+- 기존에 App.js에 있던 form은 Test.js에 옮겼습니다.
