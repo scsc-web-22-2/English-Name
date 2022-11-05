@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     max-width: 42rem;
     min-height: 100vh;
+    position: relative;
   }
   html {
     font-size: 62.5%;

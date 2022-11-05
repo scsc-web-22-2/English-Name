@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import Resct from 'react';
+import React from 'react';
 
 function Test() {
     return(
