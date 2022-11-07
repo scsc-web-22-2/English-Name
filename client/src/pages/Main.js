@@ -71,10 +71,12 @@ const StyledMain = styled.div`
 
     button {
         position: absolute;
-        width: 30rem;
-        height: 6rem;
+        width: 80.8vw;
+        height: 16vw;
+        max-width: 303px;
+        max-height: 60px;
         left: 50%;
-        top: 65rem;
+        top: 93vh;
         transform: translate(-50%, -50%);
 
         background-color: ${(props) => props.theme.colors.Engblue1};
