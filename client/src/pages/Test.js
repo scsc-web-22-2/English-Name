@@ -4,11 +4,6 @@ function Test() {
     return(
         <div>
       <form action="http://127.0.0.1:8000/api/v1/category" method="post">
-        <fieldset>
-          <legend>성별 선택</legend>
-          <input type="radio" name="gender" value="man" />남
-          <input type="radio" name="gender" value="woman" />여
-        </fieldset>
 
         <fieldset>
           <legend>질문1</legend>

@@ -4,13 +4,14 @@ import { useState } from "react";
 import arrow from '../assets/icons/arrow_right.png';
 import updown from '../assets/icons/updown.png';
 import exit from '../assets/icons/bottomsheet_exit.png';
+import { useNavigate } from "react-router-dom";
 
 function GenderForm() {
-    const [isNext, setIsNext] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [gender, setGender] = useState("성별");
+    const navigate = useNavigate();
     const onNext = () => {
-        setIsNext(true);
+        navigate("/Test");
     };
     const openModal = () => {
         setIsModalOpen(true);
@@ -41,10 +42,11 @@ function GenderForm() {
                 <span>{gender}</span>
                 <img src={updown} alt="" />
             </button>
-            <button type="submit" form="gender" onClick={onNext}>
+
+            {gender !== "성별" && <button type="submit" form="gender" onClick={onNext}>
                 <span>다음으로</span>
                 <img src={arrow} alt="" />
-            </button>
+            </button>}
             {
                 isModalOpen &&
             <>
