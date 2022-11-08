@@ -5,16 +5,21 @@ import main2 from '../assets/images/main2.png';
 import main3 from '../assets/images/main3.png';
 import main4 from '../assets/images/main4.png';
 import arrow from '../assets/icons/arrow_right.png'
+import GenderForm from '../components/genderForm';
 
 function Main() {
     const [isStart, setIsStart] = useState(false);
-    const onClick = () => {
+    const [isNext, setIsNext] = useState(false);
+    const onStart = () => {
         setIsStart(true);
+    }
+    const onNext = () => {
+        setIsNext(true);
     }
     return(
         <>
             {isStart ? 
-            <StyledMainStory>
+            (isNext ? <GenderForm/> :<StyledMainStory>
                 <h2>왓욜넴</h2>
                 <img src={main2} alt=""/>
                 <div id="story1">
@@ -25,13 +30,12 @@ function Main() {
                 </div>
                 
 
-                <button>
+                <button onClick={onNext}>
                     <span>다음으로</span><img src={arrow} alt="" />
                 </button>
                 
-            </StyledMainStory>
-            :
-            <StyledMain>
+            </StyledMainStory>)
+            :  <StyledMain>
                 <h1>
                 What’s 
                     <br/>
@@ -44,12 +48,11 @@ function Main() {
 
                 <h3>당신과<span> 잘 어울리는 <br/> 영어 이름</span>을 찾아보세요!</h3>
                 
-                <button onClick={onClick}>
+                <button onClick={onStart}>
                     <span>테스트 시작하기</span><img src={arrow} alt="" />
                 </button>
-            </StyledMain>
+                </StyledMain>
             }
-
             
         </>
         
@@ -118,6 +121,7 @@ const StyledMain = styled.div`
     button span {
         color: ${(props) => props.theme.colors.Engwhite};
         font-size: 1.5rem;
+        font-family: 'Pretendard-SemiBold';
     }
 
 
@@ -240,6 +244,7 @@ const StyledMainStory = styled.div`
     button span {
         color: ${(props) => props.theme.colors.Engwhite};
         font-size: 1.5rem;
+        font-family: 'Pretendard-SemiBold';
     }
 
 
