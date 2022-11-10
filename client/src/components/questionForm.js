@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import traffic from "../assets/icons/traffic_light.png";
 import check from "../assets/icons/check.png";
