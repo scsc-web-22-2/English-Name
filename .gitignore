@@ -152,8 +152,8 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-#secret key hide
-secrets.json
+# secret key hide
+my_settings.py
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
