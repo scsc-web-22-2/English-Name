@@ -4,12 +4,14 @@ import traffic from '../assets/icons/traffic_light.png';
 import check from '../assets/icons/check.png';
 
 
-function QuestionForm({question, name}){
+function QuestionForm({question, name, setIsChecked}){
+  const checkRadio = (e) => {
+    e.target.defaultValue&&setIsChecked(true);
+  }
     return(
         <StyledQuestionForm>
 
-        <form id="category" action="http://127.0.0.1:8000/api/v1/category" method="post">
-        
+        <form onChange={checkRadio} id="category" action="http://127.0.0.1:8000/api/v1/category" method="post">
         <fieldset>
           <legend><img src={traffic} alt=""/>{question}</legend>
           <div className='radiowrap'>

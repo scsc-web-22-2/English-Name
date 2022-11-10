@@ -6,8 +6,10 @@ import QuestionForm from '../components/questionForm';
 
 function Test() {
   const [num, setnum] = useState(1);
+  const [isChecked, setIsChecked] = useState(false);
   const incrementNum = () => {
     setnum(prev => prev + 1 );
+    setIsChecked(false);
   };
   
     return(
@@ -18,24 +20,32 @@ function Test() {
           <QuestionForm question='질문1' name='q1' />
         </div>
         <div className={num === 1 ? "bottomQuestion" : "bottomQuestion inactive"}>
-          <QuestionForm question='질문2' name='q2'/>
+          <QuestionForm question='질문2' name='q2' setIsChecked={setIsChecked}/>
+          <button type='button' onClick={incrementNum} className={!isChecked&&"inactive"}>
+            <span>다음으로</span>
+            <img src={arrow} alt="" />
+          </button>
         </div>
         <div className={num === 2 ? "topQuestion" : "topQuestion inactive"}>
           <QuestionForm question='질문3' name='q3' />
         </div>
         <div className={num === 2 ? "bottomQuestion" : "bottomQuestion inactive"}>
-          <QuestionForm question='질문4' name='q4'/>
+          <QuestionForm question='질문4' name='q4' setIsChecked={setIsChecked}/>
+          <button type='button' onClick={incrementNum} className={!isChecked&&"inactive"}>
+            <span>다음으로</span>
+            <img src={arrow} alt="" />
+          </button>
         </div>
         <div className={num === 3 ? "topQuestion" : "topQuestion inactive"}>
           <QuestionForm question='질문5' name='q5' />
         </div>
         <div className={num === 3 ? "bottomQuestion" : "bottomQuestion inactive"}>
-          <QuestionForm question='질문6' name='q6'/>
+          <QuestionForm question='질문6' name='q6' setIsChecked={setIsChecked}/>
+          <button type='submit' form='category' className={!isChecked&&"inactive"}>
+            <span>다음으로</span>
+            <img src={arrow} alt="" />
+          </button>
         </div>
-        <button type={num === 4 ? "submit" : "button"} onClick={incrementNum} form='category'>
-          <span>다음으로</span>
-          <img src={arrow} alt="" />
-        </button>
       </StyledTest>
     );
 }
@@ -67,14 +77,14 @@ const StyledTest = styled.div`
     top: 48vh;
   }
 
-  & button[type="button"] {
+  & .bottomQuestion button {
         position: absolute;
         width: 16.8rem;
         height: 10rem;
         max-width: 303px;
         max-height: 60px;
         left: 50%;
-        top: 93vh;
+        top: 45vh;
         transform: translate(-50%, -50%);
 
         background-color: ${(props) => props.theme.colors.Engblue1};
@@ -82,7 +92,7 @@ const StyledTest = styled.div`
         border-radius: 30px;
     }
 
-& button[type="button"] span {
+& .bottomQuestion button span {
     color: ${(props) => props.theme.colors.Engwhite};
     font-size: 1.5rem;
     font-family: 'Pretendard-SemiBold';
@@ -90,18 +100,13 @@ const StyledTest = styled.div`
 }
 
 
-& button[type="button"] img {
+& .bottomQuestion button img {
     position: absolute;
     width: 20px;
     height: 20px;
     left: 82%;
 }
 
-& button[type="submit"] {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
 
 `;
