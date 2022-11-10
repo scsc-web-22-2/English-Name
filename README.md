@@ -35,3 +35,7 @@
 
 #11.09(client)
 - 대분류 Test 페이지 퍼블리싱 완료 
+
+#11.10(client)
+- 소분류 검사 페이지 url '/Detail/:id'
+- 결과 페이지 url '/Result/:id'
