@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from 'styled-components';
 import traffic from '../assets/icons/traffic_light.png';
 import check from '../assets/icons/check.png';
@@ -7,13 +7,13 @@ import check from '../assets/icons/check.png';
 function QuestionForm({question, name, setIsChecked}){
   const checkRadio = (e) => {
     e.target.defaultValue&&setIsChecked(true);
-  }
+  } 
     return(
         <StyledQuestionForm>
 
         <form onChange={checkRadio} id="category" action="http://127.0.0.1:8000/api/v1/category" method="post">
         <fieldset>
-          <legend><img src={traffic} alt=""/>{question}</legend>
+          <legend><img src={traffic} alt=""/><span>{question}</span></legend>
           <div className='radiowrap'>
             <label className='first'>
               <input className='first' type="radio" name={name} value="-2" />
@@ -58,7 +58,6 @@ const StyledQuestionForm = styled.div`
     left: 50%;
     transform: translate(-50%, 50%);
     top: -5rem;
-    line-height: 13rem;
     background: #FFFFFF;
     box-shadow: 0px 3px 5px rgba(152, 152, 152, 0.24);
     border-radius: 15px;
@@ -75,6 +74,15 @@ const StyledQuestionForm = styled.div`
     top: 1.4rem;
     left: 2rem;
 
+  }
+  & legend span{
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    height: fit-content;
+    transform: translate(-50%, -50%);
+    line-height: 2.5rem;
+    width: 25rem;
   }
   & .radiowrap{
     position: absolute;
