@@ -1,6 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.shortcuts import redirect
 from names.models import Name
+from names.serializers import NameSerializer
 
 import numpy as np
 from numpy import dot
@@ -10,10 +12,7 @@ from numpy.linalg import norm
 class MainCategoryProcess(APIView):
     def post(self, request):
         """남녀 성별 구분"""
-        if request.data.get("gender") == "man":
-            man_obj = Name.objects.filter(gender="man")
-        if request.data.get("gender") == "woman":
-            woman_obj = Name.objects.filter(gender="woman")
+        gender = request.data.get("gender")
 
         """대분류 질문 구분"""
         nature = np.array([2, 0.7, 0.5, 0, 0.8, -2])
@@ -38,12 +37,29 @@ class MainCategoryProcess(APIView):
             norm(question_vector) * norm(love_friend)
         )
 
-        if max(cos_nature, cos_wisdom, cos_love) == cos_nature:
-            nature_page = "자연 질문 페이지"
-            return Response(nature_page)
-        if max(cos_nature, cos_wisdom, cos_love) == cos_wisdom:
-            wisdom_page = "지혜,영리 질문 페이지"
-            return Response(wisdom_page)
-        if max(cos_nature, cos_wisdom, cos_love) == cos_love:
-            love_page = "사랑,친구 질문 페이지"
-            return Response(love_page)
+        print(request.data)
+
+        if gender == "man":
+            if max(cos_nature, cos_wisdom, cos_love) == cos_nature:
+                return Response("test1")
+            if max(cos_nature, cos_wisdom, cos_love) == cos_wisdom:
+                return Response("test2")
+            if max(cos_nature, cos_wisdom, cos_love) == cos_love:
+                return Response("test3")
+        if gender == "woman":
+            if max(cos_nature, cos_wisdom, cos_love) == cos_nature:
+                return Response("test4")
+            if max(cos_nature, cos_wisdom, cos_love) == cos_wisdom:
+                return Response("test5")
+            if max(cos_nature, cos_wisdom, cos_love) == cos_love:
+                return Response("test6")
+
+
+class SubcatecoryProcess(APIView):
+    def get(self, request):
+        man_obj = Name.objects.filter(gender="man")
+        woman_obj = Name.objects.filter(gender="woman")
+        man_smart = Name.objects.filter(gender="man").get(meaning="영리한 사람")
+        print(man_smart)
+        serializer = NameSerializer(man_smart)
+        return Response(serializer.data)

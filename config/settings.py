@@ -85,11 +85,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# AWS DB
 pymysql.install_as_MySQLdb()
 DATABASES = my_settings.DATABASES
 
 """
-#localDB
+# localDB
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -97,7 +98,6 @@ DATABASES = {
     }
 }
 """
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
