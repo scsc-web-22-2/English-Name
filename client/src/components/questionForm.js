@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import traffic from "../assets/icons/traffic_light.png";
 import check from "../assets/icons/check.png";
@@ -18,7 +18,7 @@ function QuestionForm({ question, name, setIsChecked }) {
         <fieldset>
           <legend>
             <img src={traffic} alt="" />
-            {question}
+            <span>{question}</span>
           </legend>
           <div className="radiowrap">
             <label className="first">
@@ -63,7 +63,6 @@ const StyledQuestionForm = styled.div`
     left: 50%;
     transform: translate(-50%, 50%);
     top: -5rem;
-    line-height: 13rem;
     background: #ffffff;
     box-shadow: 0px 3px 5px rgba(152, 152, 152, 0.24);
     border-radius: 15px;
@@ -79,6 +78,15 @@ const StyledQuestionForm = styled.div`
     height: 7px;
     top: 1.4rem;
     left: 2rem;
+  }
+  & legend span {
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    height: fit-content;
+    transform: translate(-50%, -50%);
+    line-height: 2.5rem;
+    width: 25rem;
   }
   & .radiowrap {
     position: absolute;
