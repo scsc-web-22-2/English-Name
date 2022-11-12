@@ -45,3 +45,9 @@
 
 #11.11(client)
 - form을 하나만 사용해서 submit하도록 수정했습니다. 한번 더 확인 부탁드려요!
+
+#11.12(client) - url 설정 의견!
+- 페이지 url을 id로만 구분하지 말고, 의미를 부여해서 구분하면 더 쉬울 것 같아요. 다른 방법도 괜찮습니다!!
+- 소분류 검사 페이지는 '/Detail/:gender/:category'  이런 식으로
+- 결과 페이지는 '/Result/:gender/:category/:id' 이때 category는 대분류(자연, 지혜, 사랑), id는 소분류 4가지를 그냥 0,1,2,3으로 표현한 것
+참고 자료도 첨부합니다. https://velog.io/@qkrtjdtn97/React-useParams 
