@@ -51,3 +51,6 @@
 - 소분류 검사 페이지는 '/Detail/:gender/:category'  이런 식으로
 - 결과 페이지는 '/Result/:gender/:category/:id' 이때 category는 대분류(자연, 지혜, 사랑), id는 소분류 4가지를 그냥 0,1,2,3으로 표현한 것
 참고 자료도 첨부합니다. https://velog.io/@qkrtjdtn97/React-useParams 
+
+#11.13(client)
+- 로딩 컴포넌트, 404페이지
