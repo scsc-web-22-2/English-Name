@@ -7,201 +7,363 @@ import arrow from "../assets/icons/arrow_right.png";
 function QuestionForm({ data }) {
   const [num, setnum] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
-  const [isAllChecked, setIsAllChecked] =useState(false);
+  const [isAllChecked, setIsAllChecked] = useState(false);
   const incrementNum = () => {
     setnum((prev) => prev + 1);
     setIsChecked(false);
   };
   const checkRadio = (e) => {
-    (e.target.name === "q2"|| e.target.name === "q4") && setIsChecked(true);
+    (e.target.name === "q2" || e.target.name === "q4") && setIsChecked(true);
     e.target.name === "q6" && setIsAllChecked(true);
   };
-  
+
   return (
     <StyledQuestionForm>
       <form
         onChange={checkRadio}
         id="category"
         action="http://127.0.0.1:8000/api/v1/category"
-        method="post"
+        method="get"
       >
         {/* 1-2질문 */}
-        <fieldset className={num === 1 ? "topQuestion" : "topQuestion inactive"}>
+        <fieldset
+          className={num === 1 ? "topQuestion" : "topQuestion inactive"}
+        >
           <legend>
             <img src={traffic} alt="" />
             <span>{data[0].question}</span>
           </legend>
           <div className="radiowrap">
             <label className="first">
-              <input className="first" type="radio" name={data[0].name} value="-2" />
+              <input
+                className="first"
+                type="radio"
+                name={data[0].name}
+                value="-2"
+              />
               비동의<span></span>
             </label>
             <label>
-              <input className="second" type="radio" name={data[0].name} value="-1" />
+              <input
+                className="second"
+                type="radio"
+                name={data[0].name}
+                value="-1"
+              />
               <span></span>
             </label>
             <label>
-              <input className="third" type="radio" name={data[0].name} value="0" />
+              <input
+                className="third"
+                type="radio"
+                name={data[0].name}
+                value="0"
+              />
               <span></span>
             </label>
             <label>
-              <input className="fourth" type="radio" name={data[0].name} value="1" />
+              <input
+                className="fourth"
+                type="radio"
+                name={data[0].name}
+                value="1"
+              />
               <span></span>
             </label>
             <label className="fifth">
-              <input className="fifth" type="radio" name={data[0].name} value="2" />
+              <input
+                className="fifth"
+                type="radio"
+                name={data[0].name}
+                value="2"
+              />
               <span></span>동의
             </label>
           </div>
         </fieldset>
 
-        <fieldset className={num === 1 ? "bottomQuestion" : "bottomQuestion inactive"}>
+        <fieldset
+          className={num === 1 ? "bottomQuestion" : "bottomQuestion inactive"}
+        >
           <legend>
             <img src={traffic} alt="" />
             <span>{data[1].question}</span>
           </legend>
           <div className="radiowrap">
             <label className="first">
-              <input className="first" type="radio" name={data[1].name} value="-2" />
+              <input
+                className="first"
+                type="radio"
+                name={data[1].name}
+                value="-2"
+              />
               비동의<span></span>
             </label>
             <label>
-              <input className="second" type="radio" name={data[1].name} value="-1" />
+              <input
+                className="second"
+                type="radio"
+                name={data[1].name}
+                value="-1"
+              />
               <span></span>
             </label>
             <label>
-              <input className="third" type="radio" name={data[1].name} value="0" />
+              <input
+                className="third"
+                type="radio"
+                name={data[1].name}
+                value="0"
+              />
               <span></span>
             </label>
             <label>
-              <input className="fourth" type="radio" name={data[1].name} value="1" />
+              <input
+                className="fourth"
+                type="radio"
+                name={data[1].name}
+                value="1"
+              />
               <span></span>
             </label>
             <label className="fifth">
-              <input className="fifth" type="radio" name={data[1].name} value="2" />
+              <input
+                className="fifth"
+                type="radio"
+                name={data[1].name}
+                value="2"
+              />
               <span></span>동의
             </label>
           </div>
         </fieldset>
 
         {/* 3-4질문 */}
-        <fieldset className={num === 2 ? "topQuestion" : "topQuestion inactive"}>
+        <fieldset
+          className={num === 2 ? "topQuestion" : "topQuestion inactive"}
+        >
           <legend>
             <img src={traffic} alt="" />
             <span>{data[2].question}</span>
           </legend>
           <div className="radiowrap">
             <label className="first">
-              <input className="first" type="radio" name={data[2].name} value="-2" />
+              <input
+                className="first"
+                type="radio"
+                name={data[2].name}
+                value="-2"
+              />
               비동의<span></span>
             </label>
             <label>
-              <input className="second" type="radio" name={data[2].name} value="-1" />
+              <input
+                className="second"
+                type="radio"
+                name={data[2].name}
+                value="-1"
+              />
               <span></span>
             </label>
             <label>
-              <input className="third" type="radio" name={data[2].name} value="0" />
+              <input
+                className="third"
+                type="radio"
+                name={data[2].name}
+                value="0"
+              />
               <span></span>
             </label>
             <label>
-              <input className="fourth" type="radio" name={data[2].name} value="1" />
+              <input
+                className="fourth"
+                type="radio"
+                name={data[2].name}
+                value="1"
+              />
               <span></span>
             </label>
             <label className="fifth">
-              <input className="fifth" type="radio" name={data[2].name} value="2" />
+              <input
+                className="fifth"
+                type="radio"
+                name={data[2].name}
+                value="2"
+              />
               <span></span>동의
             </label>
           </div>
         </fieldset>
 
-        <fieldset className={num === 2 ? "bottomQuestion" : "bottomQuestion inactive"}>
+        <fieldset
+          className={num === 2 ? "bottomQuestion" : "bottomQuestion inactive"}
+        >
           <legend>
             <img src={traffic} alt="" />
             <span>{data[3].question}</span>
           </legend>
           <div className="radiowrap">
             <label className="first">
-              <input className="first" type="radio" name={data[3].name} value="-2" />
+              <input
+                className="first"
+                type="radio"
+                name={data[3].name}
+                value="-2"
+              />
               비동의<span></span>
             </label>
             <label>
-              <input className="second" type="radio" name={data[3].name} value="-1" />
+              <input
+                className="second"
+                type="radio"
+                name={data[3].name}
+                value="-1"
+              />
               <span></span>
             </label>
             <label>
-              <input className="third" type="radio" name={data[3].name} value="0" />
+              <input
+                className="third"
+                type="radio"
+                name={data[3].name}
+                value="0"
+              />
               <span></span>
             </label>
             <label>
-              <input className="fourth" type="radio" name={data[3].name} value="1" />
+              <input
+                className="fourth"
+                type="radio"
+                name={data[3].name}
+                value="1"
+              />
               <span></span>
             </label>
             <label className="fifth">
-              <input className="fifth" type="radio" name={data[3].name} value="2" />
+              <input
+                className="fifth"
+                type="radio"
+                name={data[3].name}
+                value="2"
+              />
               <span></span>동의
             </label>
           </div>
         </fieldset>
-        
+
         {/* 5-6질문 */}
-        <fieldset className={num === 3 ? "topQuestion" : "topQuestion inactive"}>
+        <fieldset
+          className={num === 3 ? "topQuestion" : "topQuestion inactive"}
+        >
           <legend>
             <img src={traffic} alt="" />
             <span>{data[4].question}</span>
           </legend>
           <div className="radiowrap">
             <label className="first">
-              <input className="first" type="radio" name={data[4].name} value="-2" />
+              <input
+                className="first"
+                type="radio"
+                name={data[4].name}
+                value="-2"
+              />
               비동의<span></span>
             </label>
             <label>
-              <input className="second" type="radio" name={data[4].name} value="-1" />
+              <input
+                className="second"
+                type="radio"
+                name={data[4].name}
+                value="-1"
+              />
               <span></span>
             </label>
             <label>
-              <input className="third" type="radio" name={data[4].name} value="0" />
+              <input
+                className="third"
+                type="radio"
+                name={data[4].name}
+                value="0"
+              />
               <span></span>
             </label>
             <label>
-              <input className="fourth" type="radio" name={data[4].name} value="1" />
+              <input
+                className="fourth"
+                type="radio"
+                name={data[4].name}
+                value="1"
+              />
               <span></span>
             </label>
             <label className="fifth">
-              <input className="fifth" type="radio" name={data[4].name} value="2" />
+              <input
+                className="fifth"
+                type="radio"
+                name={data[4].name}
+                value="2"
+              />
               <span></span>동의
             </label>
           </div>
         </fieldset>
 
-        <fieldset className={num === 3 ? "bottomQuestion" : "bottomQuestion inactive"}>
+        <fieldset
+          className={num === 3 ? "bottomQuestion" : "bottomQuestion inactive"}
+        >
           <legend>
             <img src={traffic} alt="" />
             <span>{data[5].question}</span>
           </legend>
           <div className="radiowrap">
             <label className="first">
-              <input className="first" type="radio" name={data[5].name} value="-2" />
+              <input
+                className="first"
+                type="radio"
+                name={data[5].name}
+                value="-2"
+              />
               비동의<span></span>
             </label>
             <label>
-              <input className="second" type="radio" name={data[5].name} value="-1" />
+              <input
+                className="second"
+                type="radio"
+                name={data[5].name}
+                value="-1"
+              />
               <span></span>
             </label>
             <label>
-              <input className="third" type="radio" name={data[5].name} value="0" />
+              <input
+                className="third"
+                type="radio"
+                name={data[5].name}
+                value="0"
+              />
               <span></span>
             </label>
             <label>
-              <input className="fourth" type="radio" name={data[5].name} value="1" />
+              <input
+                className="fourth"
+                type="radio"
+                name={data[5].name}
+                value="1"
+              />
               <span></span>
             </label>
             <label className="fifth">
-              <input className="fifth" type="radio" name={data[5].name} value="2" />
+              <input
+                className="fifth"
+                type="radio"
+                name={data[5].name}
+                value="2"
+              />
               <span></span>동의
             </label>
           </div>
         </fieldset>
-        
+
         <button
           type="button"
           onClick={incrementNum}
@@ -391,7 +553,7 @@ const StyledQuestionForm = styled.div`
     font-family: "Pretendard-SemiBold";
   }
 
-  & button img{
+  & button img {
     position: absolute;
     width: 20px;
     height: 20px;

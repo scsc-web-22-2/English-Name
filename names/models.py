@@ -14,6 +14,7 @@ class Name(models.Model):
     meaning = models.TextField()
     category = models.ForeignKey(
         "categories.SubCategory",
+        related_name="names",
         on_delete=models.SET_NULL,
         blank=True,
         null=True,

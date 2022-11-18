@@ -3,22 +3,22 @@ import styled from "styled-components";
 import QuestionForm from "../components/questionForm";
 
 function Test() {
-
   const testData = [
     {
       name: "q1",
       question: [
         "여행을 갈 때,",
         <br />,
-        "관광지보다 휴양지를 선호하는 편이다.",]
+        "관광지보다 휴양지를 선호하는 편이다.",
+      ],
     },
     {
       name: "q2",
       question: [
-          "여행 계획을 세울 때, 온라인 검색보다",
-          <br />,
-          "사람에게 직접 듣는 후기를 선호한다.",
-      ]
+        "여행 계획을 세울 때, 온라인 검색보다",
+        <br />,
+        "사람에게 직접 듣는 후기를 선호한다.",
+      ],
     },
     {
       name: "q3",
@@ -28,7 +28,7 @@ function Test() {
         "주도해서 계획을 짜기보다",
         <br />,
         "상대방을 믿고 따라가는 편이다.",
-      ]
+      ],
     },
     {
       name: "q4",
@@ -36,7 +36,7 @@ function Test() {
         "교환학생을 간다면, 학업 성과보다",
         <br />,
         "추억을 더 중요하게 여길 것이다.",
-      ]
+      ],
     },
     {
       name: "q5",
@@ -44,7 +44,7 @@ function Test() {
         "여행에서 혼자 다니는 것이",
         <br />,
         "함께 다니는 것보다 편하다.",
-      ]
+      ],
     },
     {
       name: "q6",
@@ -54,14 +54,14 @@ function Test() {
         "자연환경의 아름다움보다",
         <br />,
         "인간이 만든 문화재이다.",
-      ]
+      ],
     },
-  ]
+  ];
 
   return (
     <StyledTest>
       <h2>왓욜넴</h2>
-      <QuestionForm data={testData}/>
+      <QuestionForm data={testData} />
     </StyledTest>
   );
 }
@@ -79,6 +79,4 @@ const StyledTest = styled.div`
     top: 4rem;
     text-align: center;
   }
-
- 
 `;

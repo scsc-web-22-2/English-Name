@@ -2,7 +2,7 @@ from django.db import models
 
 
 class MainCategory(models.Model):
-    kind = models.CharField(max_length=15)
+    title = models.CharField(max_length=15)
 
     def __str__(self) -> str:
         return f"{self.kind}"
@@ -11,11 +11,16 @@ class MainCategory(models.Model):
 class SubCategory(models.Model):
     main = models.ForeignKey(
         "categories.MainCategory",
+        related_name="sub",
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
     )
-    kind = models.CharField(max_length=15)
+    kind = models.CharField(
+        max_length=15,
+        blank=True,
+        null=True,
+    )
 
     def __str__(self) -> str:
         return f"{self.kind}"

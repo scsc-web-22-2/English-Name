@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Name
+from categories.models import SubCategory
 
 
 class NameSerializer(serializers.ModelSerializer):
