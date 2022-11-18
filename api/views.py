@@ -44,28 +44,28 @@ class CategoryProcess(APIView):
             nature_data.append(nature_woman_add)
         nature_serializer = NameSerializer(nature_data, many=True)
 
-        wisdom_data = []
+        love_data = []
         for j in range(3):
-            wisdom_man_add = Name.objects.filter(gender="man").get(category_id=j + 6)
+            love_man_add = Name.objects.filter(gender="man").get(category_id=j + 6)
+            love_woman_add = Name.objects.filter(gender="woman").get(category_id=j + 6)
+            love_data.append(love_man_add)
+            love_data.append(love_woman_add)
+        love_serializer = NameSerializer(love_data, many=True)
+
+        wisdom_data = []
+        for j in range(4):
+            wisdom_man_add = Name.objects.filter(gender="man").get(category_id=j + 9)
             wisdom_woman_add = Name.objects.filter(gender="woman").get(
-                category_id=j + 6
+                category_id=j + 9
             )
             wisdom_data.append(wisdom_man_add)
             wisdom_data.append(wisdom_woman_add)
         wisdom_serializer = NameSerializer(wisdom_data, many=True)
 
-        love_data = []
-        for j in range(4):
-            love_man_add = Name.objects.filter(gender="man").get(category_id=j + 9)
-            love_woman_add = Name.objects.filter(gender="woman").get(category_id=j + 9)
-            love_data.append(love_man_add)
-            love_data.append(love_woman_add)
-        love_serializer = NameSerializer(love_data, many=True)
-
         """결과 프론트에 전송"""
         if max(cos_nature, cos_wisdom, cos_love) == cos_nature:
             return Response(nature_serializer.data)
-        if max(cos_nature, cos_wisdom, cos_love) == cos_wisdom:
-            return Response(wisdom_serializer.data)
         if max(cos_nature, cos_wisdom, cos_love) == cos_love:
             return Response(love_serializer.data)
+        if max(cos_nature, cos_wisdom, cos_love) == cos_wisdom:
+            return Response(wisdom_serializer.data)
