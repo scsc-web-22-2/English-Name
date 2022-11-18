@@ -36,20 +36,30 @@ class CategoryProcess(APIView):
         """data 저장 및 parsing"""
         nature_data = []
         for i in range(5):
-            nature_add = Name.objects.filter(gender="man").get(category_id=i + 1)
-            nature_data.append(nature_add)
+            nature_man_add = Name.objects.filter(gender="man").get(category_id=i + 1)
+            nature_woman_add = Name.objects.filter(gender="woman").get(
+                category_id=i + 1
+            )
+            nature_data.append(nature_man_add)
+            nature_data.append(nature_woman_add)
         nature_serializer = NameSerializer(nature_data, many=True)
 
         wisdom_data = []
         for j in range(3):
-            wisdom_add = Name.objects.filter(gender="man").get(category_id=j + 6)
-            wisdom_data.append(wisdom_add)
+            wisdom_man_add = Name.objects.filter(gender="man").get(category_id=j + 6)
+            wisdom_woman_add = Name.objects.filter(gender="woman").get(
+                category_id=j + 6
+            )
+            wisdom_data.append(wisdom_man_add)
+            wisdom_data.append(wisdom_woman_add)
         wisdom_serializer = NameSerializer(wisdom_data, many=True)
 
         love_data = []
         for j in range(4):
-            love_add = Name.objects.filter(gender="man").get(category_id=j + 9)
-            love_data.append(love_add)
+            love_man_add = Name.objects.filter(gender="man").get(category_id=j + 9)
+            love_woman_add = Name.objects.filter(gender="woman").get(category_id=j + 9)
+            love_data.append(love_man_add)
+            love_data.append(love_woman_add)
         love_serializer = NameSerializer(love_data, many=True)
 
         """결과 프론트에 전송"""
