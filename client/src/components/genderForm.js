@@ -4,14 +4,12 @@ import { useState } from "react";
 import arrow from "../assets/icons/arrow_right.png";
 import updown from "../assets/icons/updown.png";
 import exit from "../assets/icons/bottomsheet_exit.png";
-import { useNavigate } from "react-router-dom";
 
-function GenderForm({setGender}) {
+function GenderForm({setGender, setIsNext}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showGender, setShowGender] = useState("성별");
-  const navigate = useNavigate();
   const onNext = () => {
-    navigate("/test");
+    setIsNext(true);
   };
   const openModal = () => {
     setIsModalOpen(true);

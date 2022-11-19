@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import QuestionForm from "../components/questionForm";
+import GenderForm from '../components/genderForm';
 
-function Test({gender}) {
+function Test() {
+  const [gender, setGender] = useState("")
+  const [isNext, setIsNext] = useState(false);
   const testData = [
     {
       name: "q1",
@@ -59,10 +62,15 @@ function Test({gender}) {
   ];
 
   return (
-    <StyledTest >
-      <h2>왓욜넴</h2>
-      <QuestionForm data={testData} gender={gender}/>
-    </StyledTest>
+    <>
+    {isNext ? <StyledTest >
+        <h2>왓욜넴</h2>
+        <QuestionForm data={testData} gender={gender}/>
+      </StyledTest>:
+      <GenderForm setGender={setGender} setIsNext={setIsNext}/>
+      }
+    </>
+    
   );
 }
 

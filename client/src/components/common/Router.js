@@ -6,13 +6,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DetailTest from '../../pages/DetailTest';
 
 function Router() {
-    const [gender, setGender] = useState("")
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={ <Main setGender={setGender}/> }/>
-                <Route path='/test' element={ <Test gender={gender}/> }/>
-                <Route path='/detail/:id' element={ <DetailTest/> }/>
+                <Route path='/' element={ <Main/> }/>
+                <Route path='/test' element={ <Test/> }/>
+                <Route path='/detail' element={ <DetailTest/> }/>
                 <Route path='/result/:id' element={ <Result/> }/>
             </Routes>
         </BrowserRouter>

@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import main1 from '../assets/images/main1.png';
 import main2 from '../assets/images/main2.png';
 import main3 from '../assets/images/main3.png';
 import main4 from '../assets/images/main4.png';
 import arrow from '../assets/icons/arrow_right.png'
-import GenderForm from '../components/genderForm';
 
-function Main({setGender}) {
+function Main() {
     const [isStart, setIsStart] = useState(false);
-    const [isNext, setIsNext] = useState(false);
     const onStart = () => {
         setIsStart(true);
     }
+    const navigate = useNavigate();
     const onNext = () => {
-        setIsNext(true);
+        navigate("/test");
     }
     return(
         <>
             {isStart ? 
-            (isNext ? <GenderForm setGender={setGender}/> :<StyledMainStory>
+            <StyledMainStory>
                 <h2>왓욜넴</h2>
                 <img src={main2} alt=""/>
                 <div id="story1">
@@ -34,7 +34,7 @@ function Main({setGender}) {
                     <span>다음으로</span><img src={arrow} alt="" />
                 </button>
                 
-            </StyledMainStory>)
+            </StyledMainStory>
             :  <StyledMain>
                 <h1>
                 What’s 
