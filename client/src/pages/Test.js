@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import QuestionForm from "../components/questionForm";
 
-function Test() {
+function Test({gender}) {
   const testData = [
     {
       name: "q1",
@@ -59,9 +59,9 @@ function Test() {
   ];
 
   return (
-    <StyledTest>
+    <StyledTest >
       <h2>왓욜넴</h2>
-      <QuestionForm data={testData} />
+      <QuestionForm data={testData} gender={gender}/>
     </StyledTest>
   );
 }

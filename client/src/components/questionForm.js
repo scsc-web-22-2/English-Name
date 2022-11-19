@@ -4,7 +4,7 @@ import traffic from "../assets/icons/traffic_light.png";
 import check from "../assets/icons/check.png";
 import arrow from "../assets/icons/arrow_right.png";
 
-function QuestionForm({ data }) {
+function QuestionForm({ data, gender }) {
   const [num, setnum] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -24,7 +24,13 @@ function QuestionForm({ data }) {
         id="category"
         action="http://127.0.0.1:8000/api/v1/category"
         method="get"
-      >
+      > 
+        {/* 성별 전달 */}
+        <fieldset className="inactive">
+          <label>
+              <input type="radio" name="gender" value={gender} checked={true}/>
+          </label>
+        </fieldset>
         {/* 1-2질문 */}
         <fieldset
           className={num === 1 ? "topQuestion" : "topQuestion inactive"}

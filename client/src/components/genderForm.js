@@ -6,12 +6,12 @@ import updown from "../assets/icons/updown.png";
 import exit from "../assets/icons/bottomsheet_exit.png";
 import { useNavigate } from "react-router-dom";
 
-function GenderForm() {
+function GenderForm({setGender}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [gender, setGender] = useState("성별");
+  const [showGender, setShowGender] = useState("성별");
   const navigate = useNavigate();
   const onNext = () => {
-    navigate("/Test");
+    navigate("/test");
   };
   const openModal = () => {
     setIsModalOpen(true);
@@ -22,13 +22,16 @@ function GenderForm() {
   const showCheckedGender = (e) => {
     switch (e.target.defaultValue) {
       case "woman":
-        setGender("여자");
+        setShowGender("여자");
+        setGender("woman");
         break;
       case "man":
-        setGender("남자");
+        setShowGender("남자");
+        setGender("man");
         break;
       default:
-        setGender("관계없음");
+        setShowGender("관계없음");
+        setGender("etc");
         break;
     }
     closeModal();
@@ -38,12 +41,12 @@ function GenderForm() {
       <h2>왓욜넴</h2>
       <h3>성별을 선택해주세요.</h3>
       <button type="button" onClick={openModal}>
-        <span>{gender}</span>
+        <span>{showGender}</span>
         <img src={updown} alt="" />
       </button>
 
-      {gender !== "성별" && (
-        <button type="submit" form="gender" onClick={onNext}>
+      {showGender !== "성별" && (
+        <button type="submit" onClick={onNext}>
           <span>다음으로</span>
           <img src={arrow} alt="" />
         </button>
@@ -55,9 +58,6 @@ function GenderForm() {
             <img src={exit} alt="" onClick={closeModal} />
 
             <form
-              id="gender"
-              action="http://127.0.0.1:8000/api/v1/category"
-              method="get"
               onChange={showCheckedGender}
             >
               <fieldset>

@@ -7,7 +7,7 @@ import main4 from '../assets/images/main4.png';
 import arrow from '../assets/icons/arrow_right.png'
 import GenderForm from '../components/genderForm';
 
-function Main() {
+function Main({setGender}) {
     const [isStart, setIsStart] = useState(false);
     const [isNext, setIsNext] = useState(false);
     const onStart = () => {
@@ -19,7 +19,7 @@ function Main() {
     return(
         <>
             {isStart ? 
-            (isNext ? <GenderForm/> :<StyledMainStory>
+            (isNext ? <GenderForm setGender={setGender}/> :<StyledMainStory>
                 <h2>왓욜넴</h2>
                 <img src={main2} alt=""/>
                 <div id="story1">
