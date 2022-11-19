@@ -10,9 +10,9 @@ function Router() {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={ <Main/> }/>
-                <Route path='/Test' element={ <Test/> }/>
-                <Route path='/Detail/:id' element={ <DetailTest/> }/>
-                <Route path='/Result/:id' element={ <Result/> }/>
+                <Route path='/test' element={ <Test/> }/>
+                <Route path='/detail/:id' element={ <DetailTest/> }/>
+                <Route path='/result/:id' element={ <Result/> }/>
             </Routes>
         </BrowserRouter>
     )
