@@ -3,25 +3,71 @@ import styled from "styled-components";
 import traffic from "../assets/icons/traffic_light.png";
 import check from "../assets/icons/check.png";
 import arrow from "../assets/icons/arrow_right.png";
+import { useNavigate } from "react-router-dom";
+import Loading from "./common/loading";
 
-function QuestionForm({ data, gender }) {
+
+function QuestionForm({ data, gender, setJson }) {
   const [num, setnum] = useState(1);
+  const [checkedValue, setCheckedValue] = useState({
+    q1: 0, q2: 0, q3: 0, q4: 0, q5: 0, q6:0
+  });
   const [isChecked, setIsChecked] = useState(false);
   const [isAllChecked, setIsAllChecked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const incrementNum = () => {
     setnum((prev) => prev + 1);
     setIsChecked(false);
   };
   const checkRadio = (e) => {
-    (e.target.name === "q2" || e.target.name === "q4") && setIsChecked(true);
-    e.target.name === "q6" && setIsAllChecked(true);
+    switch (e.target.name) {
+      case "q1":
+        setCheckedValue(prev => ({...prev, q1: e.target.value}));
+        break;
+      case "q2":
+        setIsChecked(true);
+        setCheckedValue(prev => ({...prev, q2: e.target.value}));
+        break;
+      case "q3":
+        setCheckedValue(prev => ({...prev, q3: e.target.value}));
+        break;
+      case "q4":
+        setIsChecked(true);
+        setCheckedValue(prev => ({...prev, q4: e.target.value}));
+        break;
+      case "q5":
+        setCheckedValue(prev => ({...prev, q5: e.target.value}));
+      break;
+      default:
+        setIsAllChecked(true);
+        setCheckedValue(prev => ({...prev, q6: e.target.value}));
+        break;
   };
+  }
+  const formSubmit = async(e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setJson( await(
+      fetch(`http://127.0.0.1:8000/api/v1/category/?gender=${gender}&q1=${checkedValue.q1}&q2=${checkedValue.q2}&q3=${checkedValue.q3}&q4=${checkedValue.q4}&q5=${checkedValue.q5}&q6=${checkedValue.q6}`)
+    .then(res => (res.json())
+    .then(setIsLoading(false))
+    .then(navigate("/detail"))
+    .catch(error => console.log(error))
+    )));
 
-  return (
+    };
+
+  
+  
+
+  return (isLoading ? <Loading/> :
+  <>
     <StyledQuestionForm>
       <form
         onChange={checkRadio}
-        id="category"
+        onSubmit ={formSubmit}
+        id="category" 
         action="http://127.0.0.1:8000/api/v1/category"
         method="get"
       > 
@@ -379,16 +425,18 @@ function QuestionForm({ data, gender }) {
           <img src={arrow} alt="" />
         </button>
 
-        <button
+        
+      </form>
+      <button
+        form="category"
           type="submit"
-          onClick={incrementNum}
           className={!isAllChecked && "inactive"}
         >
           <span>다음으로</span>
           <img src={arrow} alt="" />
         </button>
-      </form>
     </StyledQuestionForm>
+  </>
   );
 }
 

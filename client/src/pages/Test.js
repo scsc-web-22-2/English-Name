@@ -3,7 +3,7 @@ import styled from "styled-components";
 import QuestionForm from "../components/questionForm";
 import GenderForm from '../components/genderForm';
 
-function Test() {
+function Test({setJson}) {
   const [gender, setGender] = useState("")
   const [isNext, setIsNext] = useState(false);
   const testData = [
@@ -65,7 +65,7 @@ function Test() {
     <>
     {isNext ? <StyledTest >
         <h2>왓욜넴</h2>
-        <QuestionForm data={testData} gender={gender}/>
+        <QuestionForm data={testData} gender={gender} setJson={setJson}/>
       </StyledTest>:
       <GenderForm setGender={setGender} setIsNext={setIsNext}/>
       }
