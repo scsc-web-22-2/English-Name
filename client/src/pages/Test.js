@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import QuestionForm from "../components/questionForm";
 import GenderForm from '../components/genderForm';
+import DetailTest from "./DetailTest";
 
-function Test({setJson}) {
+function Test({setJson, json}) {
   const [gender, setGender] = useState("")
   const [isNext, setIsNext] = useState(false);
+  const [isDetail, setIsDetail] = useState(false);
   const testData = [
     {
       name: "q1",
@@ -63,10 +65,12 @@ function Test({setJson}) {
 
   return (
     <>
-    {isNext ? <StyledTest >
+
+    {isNext ? ( isDetail ? <DetailTest json={json}/> :
+    <StyledTest >
         <h2>왓욜넴</h2>
-        <QuestionForm data={testData} gender={gender} setJson={setJson}/>
-      </StyledTest>:
+        <QuestionForm data={testData} gender={gender} setIsDetail={setIsDetail} setJson={setJson} />
+      </StyledTest>):
       <GenderForm setGender={setGender} setIsNext={setIsNext}/>
       }
     </>

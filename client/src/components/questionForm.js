@@ -3,11 +3,11 @@ import styled from "styled-components";
 import traffic from "../assets/icons/traffic_light.png";
 import check from "../assets/icons/check.png";
 import arrow from "../assets/icons/arrow_right.png";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import Loading from "./common/loading";
 
 
-function QuestionForm({ data, gender, setJson }) {
+function QuestionForm({ data, gender, setJson, setIsDetail }) {
   const [num, setnum] = useState(1);
   const [checkedValue, setCheckedValue] = useState({
     q1: 0, q2: 0, q3: 0, q4: 0, q5: 0, q6:0
@@ -48,14 +48,13 @@ function QuestionForm({ data, gender, setJson }) {
   const formSubmit = async(e) => {
     e.preventDefault();
     setIsLoading(true);
-    setJson( await(
+    setJson ( await(
       fetch(`http://127.0.0.1:8000/api/v1/category/?gender=${gender}&q1=${checkedValue.q1}&q2=${checkedValue.q2}&q3=${checkedValue.q3}&q4=${checkedValue.q4}&q5=${checkedValue.q5}&q6=${checkedValue.q6}`)
-    .then(res => (res.json())
-    .then(setIsLoading(false))
-    .then(navigate("/detail"))
+    .then(res => (res.json()))
     .catch(error => console.log(error))
-    )));
-
+    ));
+  
+    setIsDetail(true);
     };
 
   
