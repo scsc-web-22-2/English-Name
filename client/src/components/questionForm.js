@@ -15,7 +15,6 @@ function QuestionForm({ data, gender, setJson, setIsDetail }) {
   const [isChecked, setIsChecked] = useState(false);
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
   const incrementNum = () => {
     setnum((prev) => prev + 1);
     setIsChecked(false);

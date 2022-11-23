@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import DetailTestForm from "../components/detailTestForm";
-import answer1 from "../assets/images/1.jpg";
-import answer2 from "../assets/images/1.jpg";
-import answer3 from "../assets/images/1.jpg";
-import answer4 from "../assets/images/1.jpg";
-import answer5 from "../assets/images/1.jpg";
-import answer6 from "../assets/images/1.jpg";
-import answer7 from "../assets/images/1.jpg";
-import answer8 from "../assets/images/1.jpg";
-import answer9 from "../assets/images/1.jpg";
-import answer10 from "../assets/images/1.jpg";
-import answer11 from "../assets/images/1.jpg";
-import answer12 from "../assets/images/1.jpg";
+import Loading from "../components/common/loading";
 
 function DetailTest({json}){
+    const [isLoading, setIsLoading] = useState(true);
     const [question, setQuestion] = useState("");
     const [answerArray, SetAnswerArray] = useState([]);
     const getDetail = () => {
@@ -23,20 +13,20 @@ function DetailTest({json}){
                             "여유를 찾아 떠나려는 당신,",<br/>,
                             "어떤 곳으로 떠나고 싶나요?"]);
                         SetAnswerArray([
-                            {answer:"꽃이 만발한 곳", img:{answer1}},
-                            {answer:"나무와 새들의 숲", img:{answer2}},
-                            {answer:"나무와 새들의 숲", img:{answer3}},
-                            {answer:"나무와 새들의 숲", img:{answer4}},
+                            {answer:"꽃이 만발한 곳", img:"1"},
+                            {answer:"나무와 새들의 숲", img:"2"},
+                            {answer:"시원한 바다", img:"3"},
+                            {answer:"달이 비추는 도시", img:"4"},
                         ]);
                     } else if(json[1].category >= 6 && json[1].category <=8){
                         setQuestion([
                             "여행을 떠나 유명한 공원에 갔습니다.",<br/>,
                             "어떤 사람들이 보이나요?"]);
                         SetAnswerArray([
-                            {answer:"꽃이 만발한 곳", img:{answer5}},
-                            {answer:"나무와 새들의 숲", img:{answer6}},
-                            {answer:"나무와 새들의 숲", img:{answer7}},
-                            {answer:"나무와 새들의 숲", img:{answer8}},
+                            {answer:"나들이 온 가족", img:"5"},
+                            {answer:"데이트 하는 연인", img:"6"},
+                            {answer:"놀러온 친구들", img:"7"},
+                            {answer:"강아지와 행인", img:"8"},
                         ]);
                     } else{
                         setQuestion([
@@ -44,12 +34,16 @@ function DetailTest({json}){
                             "전재산을 잃었다,",<br/>,
                             "어떻게 해결하실건가요?"]);
                         SetAnswerArray([
-                            {answer:"꽃이 만발한 곳", img:{answer9}},
-                            {answer:"나무와 새들의 숲", img:{answer10}},
-                            {answer:"나무와 새들의 숲", img:{answer11}},
-                            {answer:"나무와 새들의 숲", img:{answer12}},
+                            {answer:["뭐든 배워서",<br/>, 
+                            "직장을 잡는다"], img:"9"},
+                            {answer:"대사관에 연락한다", img:"10"},
+                            {answer:["길거리 공연에",<br/>, 
+                            "합류해 돈을 번다"], img:"11"},
+                            {answer:["신중히 더 좋은",<br/>, 
+                            "방법을 고민한다"], img:"12"},
                         ]);
                     };
+                setIsLoading(false);
     }
     
    useEffect(() => {
@@ -58,8 +52,12 @@ function DetailTest({json}){
     return(
         <StyledDetailTest>
             <h2>왓욜넴</h2>
-            
+            {isLoading ? <Loading/> :
+            <>
             <DetailTestForm question={question} answer={answerArray}/>
+            </>
+            }
+            
         </StyledDetailTest>
     )
 };
