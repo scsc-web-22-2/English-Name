@@ -54,7 +54,7 @@ function DetailTest({json}){
             <h2>왓욜넴</h2>
             {isLoading ? <Loading/> :
             <>
-            <DetailTestForm question={question} answer={answerArray}/>
+            <DetailTestForm question={question} answer={answerArray} json={json}/>
             </>
             }
             
