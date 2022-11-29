@@ -5,13 +5,27 @@ class Name(models.Model):
     class GenderChoices(models.TextChoices):
         MAN = ("man", "man")
         WOMAN = ("woman", "woman")
+        ETC = ("etc", "etc")
 
     gender = models.CharField(
         max_length=5,
         choices=GenderChoices.choices,
+        blank=True,
+        null=True,
     )
-    name = models.CharField(max_length=100)
-    meaning = models.TextField()
+    name = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+    )
+    result = models.TextField(
+        blank=True,
+        null=True,
+    )
+    meaning = models.TextField(
+        blank=True,
+        null=True,
+    )
     category = models.ForeignKey(
         "categories.SubCategory",
         related_name="names",
