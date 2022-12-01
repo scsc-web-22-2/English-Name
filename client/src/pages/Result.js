@@ -174,7 +174,7 @@ const StyledResult = styled.div`
     line-height: 2.7rem;
     transform: translate(-50%, -50%);
     text-align: left;
-    padding-left: 1.6rem;
+    padding-left: 2rem;
   }
 
 `;

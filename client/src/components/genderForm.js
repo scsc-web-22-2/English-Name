@@ -5,7 +5,7 @@ import arrow from "../assets/icons/arrow_right.png";
 import updown from "../assets/icons/updown.png";
 import exit from "../assets/icons/bottomsheet_exit.png";
 
-function GenderForm({setGender, setIsNext}) {
+function GenderForm({setGender, setIsNext, setProgress}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showGender, setShowGender] = useState("성별");
   const onNext = () => {
@@ -44,7 +44,7 @@ function GenderForm({setGender, setIsNext}) {
       </button>
 
       {showGender !== "성별" && (
-        <button type="submit" onClick={onNext}>
+        <button type="submit" onClick={()=>{onNext(); setProgress(1);}}>
           <span>다음으로</span>
           <img src={arrow} alt="" />
         </button>

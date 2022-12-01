@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import traffic from "../assets/icons/traffic_light.png";
 import check from "../assets/icons/check.png";
 import arrow from "../assets/icons/arrow_right.png";
-import { json, useNavigate } from "react-router-dom";
 import Loading from "./common/loading";
+import ProgressBar from "../components/common/progressBar";
 
 
-function QuestionForm({ data, gender, setJson, setIsDetail }) {
+function QuestionForm({ data, gender, setJson, setIsDetail, setProgress, progress }) {
   const [num, setnum] = useState(1);
   const [checkedValue, setCheckedValue] = useState({
-    q1: 0, q2: 0, q3: 0, q4: 0, q5: 0, q6:0
+    q1: null, q2: null, q3: null, q4: null, q5: null, q6:null
   });
   const [isChecked, setIsChecked] = useState(false);
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -42,8 +42,25 @@ function QuestionForm({ data, gender, setJson, setIsDetail }) {
         setIsAllChecked(true);
         setCheckedValue(prev => ({...prev, q6: e.target.value}));
         break;
+      
   };
   }
+
+
+
+  const countProgress = () => {
+    let total = 1;
+    
+    for(var q in checkedValue){
+      if(checkedValue[q] !== null){
+        total += 1;
+      }
+    }
+    setProgress(total);
+  }
+
+  useEffect(() => {countProgress()},[checkedValue]);
+
   const formSubmit = async(e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -61,6 +78,7 @@ function QuestionForm({ data, gender, setJson, setIsDetail }) {
 
   return (isLoading ? <Loading/> :
   <>
+    <ProgressBar progress={progress} />
     <StyledQuestionForm>
       <form
         onChange={checkRadio}
@@ -451,7 +469,7 @@ const StyledQuestionForm = styled.div`
   }
   & .topQuestion {
     position: absolute;
-    top: 12vh;
+    top: 13vh;
   }
 
   & .bottomQuestion {

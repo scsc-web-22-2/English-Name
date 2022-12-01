@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DetailTestForm from "../components/detailTestForm";
 import Loading from "../components/common/loading";
 
-function DetailTest({json}){
+function DetailTest({json, setProgress, progress}){
     const [isLoading, setIsLoading] = useState(true);
     const [question, setQuestion] = useState("");
     const [answerArray, SetAnswerArray] = useState([]);
@@ -54,7 +54,7 @@ function DetailTest({json}){
             <h2>왓욜넴</h2>
             {isLoading ? <Loading/> :
             <>
-            <DetailTestForm question={question} answer={answerArray} json={json}/>
+            <DetailTestForm question={question} answer={answerArray} json={json} setProgress={setProgress} progress={progress}/>
             </>
             }
             

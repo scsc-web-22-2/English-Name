@@ -4,77 +4,88 @@ import { useState } from "react";
 import traffic from "../assets/icons/traffic_light.png";
 import arrow from "../assets/icons/arrow_right.png";
 import { useNavigate } from "react-router-dom";
+import ProgressBar from "../components/common/progressBar";
 
-function DetailTestForm({question, answer, json}) {
+function DetailTestForm({question, answer, json, setProgress, progress}) {
   const [id, setId] = useState("");
   const navigate = useNavigate();
   const [clickedBtnId, setClickedBtnId] = useState("");
   const getClickedBtn = (answerId) => {
     setClickedBtnId(answerId);
+    countProgress();
   }
   const goToResult = () => {
     navigate(`/result/${id}`,{
       state: {id:id, json: json}
     });
   }
+  const countProgress = () =>{
+    if(clickedBtnId !== null){
+      setProgress(8);
+    }
+  }
     return(
+      <>
+        <ProgressBar progress={progress}/>
         <StyledDetailTestForm>
-            <div className="questionWrap">
-                <img src={traffic} alt="" />
-                <span>{question}</span>
-            </div>
+              <div className="questionWrap">
+                  <img src={traffic} alt="" />
+                  <span>{question}</span>
+              </div>
 
-            <ul className="answerWrap">
-                <li>
-                  <button id={clickedBtnId === answer[0].img ? "clicked" : ""} className={answer[0].img === "9" ? "answer first br" : "answer first"} 
-                  value={`${answer[0].img}`}
-                  onClick={() => {
-                    setId(answer[0].img);
-                    getClickedBtn(answer[0].img);
-                    }}>
-                    <img src={require(`../assets/images/${answer[0].img}.jpg`)} alt=""/>
-                    <span>{answer[0].answer}</span>
-                  </button>
-                </li>
-                <li>
-                  <button id={clickedBtnId === answer[1].img ? "clicked" : ""} className={answer[1].img === "10" ? "answer second br" : "answer second"} 
-                  value={`${answer[1].img}`}
-                  onClick={() => {
-                    setId(answer[1].img);
-                    getClickedBtn(answer[1].img);
-                    }}>
-                    <img src={require(`../assets/images/${answer[1].img}.jpg`)} alt=""/>
-                    <span>{answer[1].answer}</span>
+              <ul className="answerWrap">
+                  <li>
+                    <button id={clickedBtnId === answer[0].img ? "clicked" : ""} className={answer[0].img === "9" ? "answer first br" : "answer first"} 
+                    value={`${answer[0].img}`}
+                    onClick={() => {
+                      setId(answer[0].img);
+                      getClickedBtn(answer[0].img);
+                      }}>
+                      <img src={require(`../assets/images/${answer[0].img}.jpg`)} alt=""/>
+                      <span>{answer[0].answer}</span>
                     </button>
-                </li>
-                <li>
-                  <button id={clickedBtnId === answer[2].img ? "clicked" : ""} className={answer[2].img === "11" ? "answer third br" : "answer third"} 
-                  value={`${answer[2].img}`}
-                  onClick={() => {
-                    setId(answer[2].img);
-                    getClickedBtn(answer[2].img);
-                    }}>
-                    <img src={require(`../assets/images/${answer[2].img}.jpg`)} alt=""/>
-                    <span>{answer[2].answer}</span>
-                  </button>
-                </li>
-                <li>
-                  <button id={clickedBtnId === answer[3].img ? "clicked" : ""} className={answer[3].img === "12" ? "answer fourth br" : "answer fourth"} 
-                  value={`${answer[3].img}`}
-                  onClick={() => {
-                    setId(answer[3].img);
-                    getClickedBtn(answer[3].img);
-                    }}>
-                    <img src={require(`../assets/images/${answer[3].img}.jpg`)} alt=""/>
-                    <span>{answer[3].answer}</span>
-                  </button>
-                </li>
-            </ul>    
-            <button className={(id !== "") ? "finish": "inactive"} onClick={goToResult}>
-                <span>결과 보러 가기</span><img src={arrow} alt="" />
-            </button>
-            
-        </StyledDetailTestForm>
+                  </li>
+                  <li>
+                    <button id={clickedBtnId === answer[1].img ? "clicked" : ""} className={answer[1].img === "10" ? "answer second br" : "answer second"} 
+                    value={`${answer[1].img}`}
+                    onClick={() => {
+                      setId(answer[1].img);
+                      getClickedBtn(answer[1].img);
+                      }}>
+                      <img src={require(`../assets/images/${answer[1].img}.jpg`)} alt=""/>
+                      <span>{answer[1].answer}</span>
+                      </button>
+                  </li>
+                  <li>
+                    <button id={clickedBtnId === answer[2].img ? "clicked" : ""} className={answer[2].img === "11" ? "answer third br" : "answer third"} 
+                    value={`${answer[2].img}`}
+                    onClick={() => {
+                      setId(answer[2].img);
+                      getClickedBtn(answer[2].img);
+                      }}>
+                      <img src={require(`../assets/images/${answer[2].img}.jpg`)} alt=""/>
+                      <span>{answer[2].answer}</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button id={clickedBtnId === answer[3].img ? "clicked" : ""} className={answer[3].img === "12" ? "answer fourth br" : "answer fourth"} 
+                    value={`${answer[3].img}`}
+                    onClick={() => {
+                      setId(answer[3].img);
+                      getClickedBtn(answer[3].img);
+                      }}>
+                      <img src={require(`../assets/images/${answer[3].img}.jpg`)} alt=""/>
+                      <span>{answer[3].answer}</span>
+                    </button>
+                  </li>
+              </ul>    
+              <button className={(id !== "") ? "finish": "inactive"} onClick={goToResult}>
+                  <span>결과 보러 가기</span><img src={arrow} alt="" />
+              </button>
+              
+          </StyledDetailTestForm>
+      </>
+        
     )
 };
 
