@@ -8,7 +8,7 @@ function DetailTest({json}){
     const [question, setQuestion] = useState("");
     const [answerArray, SetAnswerArray] = useState([]);
     const getDetail = () => {
-        if(json[1].category >= 1 && json[1].category <=5){
+        if(json[1].category >= 1 && json[1].category <=4){
                         setQuestion([
                             "여유를 찾아 떠나려는 당신,",<br/>,
                             "어떤 곳으로 떠나고 싶나요?"]);
@@ -18,7 +18,7 @@ function DetailTest({json}){
                             {answer:"시원한 바다", img:"3"},
                             {answer:"달이 비추는 도시", img:"4"},
                         ]);
-                    } else if(json[1].category >= 6 && json[1].category <=8){
+                    } else if(json[1].category >= 5 && json[1].category <=8){
                         setQuestion([
                             "여행을 떠나 유명한 공원에 갔습니다.",<br/>,
                             "어떤 사람들이 보이나요?"]);
