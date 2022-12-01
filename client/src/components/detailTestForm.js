@@ -8,6 +8,10 @@ import { useNavigate } from "react-router-dom";
 function DetailTestForm({question, answer, json}) {
   const [id, setId] = useState("");
   const navigate = useNavigate();
+  const [clickedBtnId, setClickedBtnId] = useState("");
+  const getClickedBtn = (answerId) => {
+    setClickedBtnId(answerId);
+  }
   const goToResult = () => {
     navigate(`/result/${id}`,{
       state: {id:id, json: json}
@@ -22,40 +26,44 @@ function DetailTestForm({question, answer, json}) {
 
             <ul className="answerWrap">
                 <li>
-                  <button className={answer[0].img === "9" ? "answer first br" : "answer first"} 
+                  <button id={clickedBtnId === answer[0].img ? "clicked" : ""} className={answer[0].img === "9" ? "answer first br" : "answer first"} 
                   value={`${answer[0].img}`}
                   onClick={() => {
                     setId(answer[0].img);
+                    getClickedBtn(answer[0].img);
                     }}>
                     <img src={require(`../assets/images/${answer[0].img}.jpg`)} alt=""/>
                     <span>{answer[0].answer}</span>
                   </button>
                 </li>
                 <li>
-                  <button className={answer[1].img === "10" ? "answer second br" : "answer second"} 
+                  <button id={clickedBtnId === answer[1].img ? "clicked" : ""} className={answer[1].img === "10" ? "answer second br" : "answer second"} 
                   value={`${answer[1].img}`}
                   onClick={() => {
                     setId(answer[1].img);
+                    getClickedBtn(answer[1].img);
                     }}>
                     <img src={require(`../assets/images/${answer[1].img}.jpg`)} alt=""/>
                     <span>{answer[1].answer}</span>
                     </button>
                 </li>
                 <li>
-                  <button className={answer[2].img === "11" ? "answer third br" : "answer third"} 
+                  <button id={clickedBtnId === answer[2].img ? "clicked" : ""} className={answer[2].img === "11" ? "answer third br" : "answer third"} 
                   value={`${answer[2].img}`}
                   onClick={() => {
                     setId(answer[2].img);
+                    getClickedBtn(answer[2].img);
                     }}>
                     <img src={require(`../assets/images/${answer[2].img}.jpg`)} alt=""/>
                     <span>{answer[2].answer}</span>
                   </button>
                 </li>
                 <li>
-                  <button className={answer[3].img === "12" ? "answer fourth br" : "answer fourth"} 
+                  <button id={clickedBtnId === answer[3].img ? "clicked" : ""} className={answer[3].img === "12" ? "answer fourth br" : "answer fourth"} 
                   value={`${answer[3].img}`}
                   onClick={() => {
                     setId(answer[3].img);
+                    getClickedBtn(answer[3].img);
                     }}>
                     <img src={require(`../assets/images/${answer[3].img}.jpg`)} alt=""/>
                     <span>{answer[3].answer}</span>
@@ -136,6 +144,10 @@ const StyledDetailTestForm = styled.div`
     position: relative;
   }
 
+  & button.answer:active {
+    box-shadow: none;
+  }
+
   & button.answer.first, button.answer.second {
     margin-top: 0;
   }
@@ -145,6 +157,7 @@ const StyledDetailTestForm = styled.div`
     width: 100%;
     border-radius: 15px;
     height: 100%;
+    padding: 1px;
     
    
   }
@@ -162,6 +175,10 @@ const StyledDetailTestForm = styled.div`
     border-radius: 0 0 15px 15px;
     z-index: 1;
     
+  }
+
+  & button.answer#clicked span {
+    color: ${(props) => props.theme.colors.Engblue1};
   }
 
   & button.answer.br span {
