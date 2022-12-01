@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "../components/common/loading";
 import traffic from "../assets/icons/traffic_light.png";
+import { useNavigate } from "react-router-dom";
 
 function Result() {
     const location = useLocation();
@@ -11,6 +12,11 @@ function Result() {
     const [name, setName] = useState("");
     const [desc, setDesc] = useState("");
     const [mean, setMean] = useState("");
+    const navigate = useNavigate();
+
+    const goToStart = () => {
+      navigate('/');
+    }
 
   
     
@@ -29,9 +35,11 @@ function Result() {
         getResult(location.state.json);
     },[])
     return(
+      <>
+        {isLoading ? <Loading/> :
         <StyledResult>
             <h2>왓욜넴</h2>
-            {isLoading ? <Loading/> :
+            
             <div className="resultWrap">
                 <h1>{name}</h1>
                 <img className="main" src={require(`../assets/images/result${resultId}.png`)} alt=""/>
@@ -52,11 +60,14 @@ function Result() {
                   })}
                   </div>
                 </div>
-                
             </div>
-            }
-            
-        </StyledResult>
+
+            <button className="goToStart" onClick={goToStart}>
+            <span>검사 다시하기</span>
+            </button>
+        </StyledResult>}
+      </>
+        
     )
 };
 
@@ -176,5 +187,27 @@ const StyledResult = styled.div`
     text-align: left;
     padding-left: 2rem;
   }
+
+  button.goToStart {
+        position: absolute;
+        width: 17rem;
+        height: 16vw;
+        max-width: 303px;
+        max-height: 60px;
+        left: 50%;
+        top: 93vh;
+        transform: translate(-50%, -50%);
+
+        background-color: ${(props) => props.theme.colors.Engblue1};
+        box-shadow: 0px 3px 8px 2px rgba(166, 221, 255, 0.63);
+        border-radius: 30px;
+
+    }
+
+    button.goToStart span {
+        color: ${(props) => props.theme.colors.Engwhite};
+        font-size: 1.5rem;
+        font-family: 'Pretendard-SemiBold';
+    }
 
 `;
