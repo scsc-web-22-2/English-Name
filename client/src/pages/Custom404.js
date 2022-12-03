@@ -100,6 +100,7 @@ font-family: 'Pretendard-ExtraBold';
     color: ${(props) => props.theme.colors.Engblue3};
     font-size: 1.5rem;
 position: absolute;
+width: 100%;
 left: 50%;
 transform: translate(-50%, -50%);
 top: 50%;

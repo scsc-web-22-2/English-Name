@@ -5,6 +5,7 @@ import check from "../assets/icons/check.png";
 import arrow from "../assets/icons/arrow_right.png";
 import Loading from "./common/loading";
 import ProgressBar from "../components/common/progressBar";
+import { useNavigate } from "react-router-dom";
 
 
 function QuestionForm({ data, gender, setJson, setIsDetail, setProgress, progress }) {
@@ -15,6 +16,7 @@ function QuestionForm({ data, gender, setJson, setIsDetail, setProgress, progres
   const [isChecked, setIsChecked] = useState(false);
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const incrementNum = () => {
     setnum((prev) => prev + 1);
     setIsChecked(false);
@@ -66,7 +68,12 @@ function QuestionForm({ data, gender, setJson, setIsDetail, setProgress, progres
     setIsLoading(true);
     setJson ( await(
       fetch(`http://127.0.0.1:8000/api/v1/category/?gender=${gender}&q1=${checkedValue.q1}&q2=${checkedValue.q2}&q3=${checkedValue.q3}&q4=${checkedValue.q4}&q5=${checkedValue.q5}&q6=${checkedValue.q6}`)
-    .then(res => (res.json()))
+    .then(res => {
+      if(res.status === 404){
+        navigate('/404');
+      }
+      return res.json();
+    })
     .catch(error => console.log(error))
     ));
   
