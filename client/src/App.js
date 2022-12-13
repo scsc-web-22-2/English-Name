@@ -1,12 +1,20 @@
-import "./App.css";
+<<<<<<< HEAD
+=======
+import GlobalStyle from './components/common/GlobalStyle';
+import Router from './components/common/Router';
+import theme from './components/common/theme';
+import { ThemeProvider } from 'styled-components';
+>>>>>>> develop
 
 function App() {
   return (
-    <div className="App">
-      <div>
-        <a href="http://127.0.0.1:8000/api/post-list">api test</a>
-      </div>
-    </div>
+    <>
+      <GlobalStyle/>
+      <ThemeProvider theme={theme}>
+        <Router />
+      </ThemeProvider>
+    </>
+    
   );
 }
 

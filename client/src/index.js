@@ -1,8 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+<<<<<<< HEAD
+=======
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import './assets/fonts/font.css';
+>>>>>>> develop
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
