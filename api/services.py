@@ -30,12 +30,12 @@ class ClassifyLogic:
 
     def maxLogic(self, distanceList: list, questionVector):
         compareArr = ClassifyLogic.compareArr
-        maxDistance = max(distanceList)
+        minDistance = min(distanceList)
         order = []
         processsedCompareArr = []
 
         for i in range(len(distanceList)):
-            if maxDistance == distanceList[i]:
+            if minDistance == distanceList[i]:
                 order.append(i)
                 processsedCompareArr.append(compareArr[i])
         if len(order) == 1:
