@@ -88,3 +88,10 @@
 - 결과 페이지 구현 완료했습니다. 공유하기 버튼은 나중에 구현하고, 지금은 검사 다시하기 버튼으로 구현해도 괜찮을것 같아서 그렇게 했습니다!
 - 테스트 진행 상황에 따라 progressBar가 보이도록 구현했습니다.
 - 서버 status가 404일때 404페이지 보이도록, url을 잘못입력했을때 404가 보이도록 구현했습니다!
+
+
+ppt용 Client 활동 강조부분?
+- 모바일 뷰 ux 디자인
+- Styled Components 라이브러리 활용
+- React Hook(useState, useEffect, useNavigate, useLocation 등) 활용
+- form radio 스타일 커스텀
