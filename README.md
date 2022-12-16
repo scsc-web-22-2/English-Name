@@ -104,4 +104,5 @@ ppt용 Client 활동 강조부분?
 - 위는 배포 내용이고 배포 완료했습니다!
 - 제가 배포를 진행해보니 프론트, 백 각각 따로 하는 방식을 사용한느 게 더 편하더라구요
 - 그래서 이제 배포 후 수정 및 업데이트 단계에서는 현재 Organization의 Frontend-Deploy, Backend-Deploy 를 활용하여 진행할게요!
-- 배포 과정에서 백 부분 뿐 아니라 프론트 부분도 수정된 곳이 꽤 있어서(fetch 링크나 index.html 등) 앞으로는 Frontend-Deploy를 활용해 
+- 배포 과정에서 백 부분 뿐 아니라 프론트 부분도 수정된 곳이 꽤 있어서(fetch 링크나 index.html 등) 앞으로는 Frontend-Deploy를 활용해 주세요.
+- 자세한 사항은 Frontend-Deploy의 Readme를 참고하세요!
