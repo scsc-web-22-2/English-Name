@@ -95,3 +95,13 @@ ppt용 Client 활동 강조부분?
 - Styled Components 라이브러리 활용
 - React Hook(useState, useEffect, useNavigate, useLocation 등) 활용
 - form radio 스타일 커스텀
+
+#12.17
+- AWS EC2, RDS, UWSGI, NGINX 활용
+- 가비아에서 도메인 구입(16,500) => 동아리 지원 가능 여부 문의 예정
+- AWS 로드 밸런서 및 nginx proxy 이용하여 https 적용
+
+- 위는 배포 내용이고 배포 완료했습니다!
+- 제가 배포를 진행해보니 프론트, 백 각각 따로 하는 방식을 사용한느 게 더 편하더라구요
+- 그래서 이제 배포 후 수정 및 업데이트 단계에서는 현재 Organization의 Frontend-Deploy, Backend-Deploy 를 활용하여 진행할게요!
+- 배포 과정에서 백 부분 뿐 아니라 프론트 부분도 수정된 곳이 꽤 있어서(fetch 링크나 index.html 등) 앞으로는 Frontend-Deploy를 활용해 
