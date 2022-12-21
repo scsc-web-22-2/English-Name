@@ -14,6 +14,7 @@
 Git Commit & Refactoring 과정  
 ./docs/README.md
 
+실제 배포 repository는 private repository로 되어있음
 
 
 FrontEnd
