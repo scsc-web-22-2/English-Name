@@ -3,11 +3,11 @@
     서울대학교 컴퓨터 중앙동아리 SCSC 22년 가을학기 프로젝트
     당신 성격에 맞는 영어이름을 찾아주는 웹사이트입니다!
 
-    <a href="https://scscproject-engname.com">영어이름 웹사이트</a>
+    영어이름 웹사이트: <https://scscproject-engname.com/>
     (EC2 인스턴스를 언제까지 켜놓을 지 알 수 없음. 도메인은 1년(~23.12.15))
 
     영어이름 데이터 원본 및 전체 구조 - 아래 Notion
-    <a href="https://airy-fang-202.notion.site/7c600296fe264622a0cf0ffe8c1e54fb">영어이름 웹 프로젝트 노션</a>
+    영어이름 웹 프로젝트 노션: <https://airy-fang-202.notion.site/7c600296fe264622a0cf0ffe8c1e54fb/>
     
     Git Commit & Refactoring 과정
     ./docs/README.md
