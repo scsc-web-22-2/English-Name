@@ -6,7 +6,7 @@
 영어이름 웹사이트: <https://scscproject-engname.com/>  
 (EC2 인스턴스를 언제까지 켜놓을 지 알 수 없음. 도메인은 1년(~23.12.15))
 
-영어이름 데이터 원본 및 전체 구조  
+영어이름 데이터 원본 및 전체 구조('백엔드 소통'부분)  
 영어이름 웹 프로젝트 노션: <https://airy-fang-202.notion.site/7c600296fe264622a0cf0ffe8c1e54fb/>
     
 Git Commit & Refactoring 과정  
