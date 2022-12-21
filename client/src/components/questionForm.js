@@ -7,11 +7,22 @@ import Loading from "./common/loading";
 import ProgressBar from "../components/common/progressBar";
 import { useNavigate } from "react-router-dom";
 
-
-function QuestionForm({ data, gender, setJson, setIsDetail, setProgress, progress }) {
+function QuestionForm({
+  data,
+  gender,
+  setJson,
+  setIsDetail,
+  setProgress,
+  progress,
+}) {
   const [num, setnum] = useState(1);
   const [checkedValue, setCheckedValue] = useState({
-    q1: null, q2: null, q3: null, q4: null, q5: null, q6:null
+    q1: null,
+    q2: null,
+    q3: null,
+    q4: null,
+    q5: null,
+    q6: null,
   });
   const [isChecked, setIsChecked] = useState(false);
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -24,442 +35,455 @@ function QuestionForm({ data, gender, setJson, setIsDetail, setProgress, progres
   const checkRadio = (e) => {
     switch (e.target.name) {
       case "q1":
-        setCheckedValue(prev => ({...prev, q1: e.target.value}));
+        if(checkedValue.q2 != null){setIsChecked(true)};
+        setCheckedValue((prev) => ({ ...prev, q1: e.target.value }));
         break;
       case "q2":
-        setIsChecked(true);
-        setCheckedValue(prev => ({...prev, q2: e.target.value}));
+        if(checkedValue.q1 != null){setIsChecked(true)};
+        setCheckedValue((prev) => ({ ...prev, q2: e.target.value }));
         break;
       case "q3":
-        setCheckedValue(prev => ({...prev, q3: e.target.value}));
+        if(checkedValue.q4 != null){setIsChecked(true)};
+        setCheckedValue((prev) => ({ ...prev, q3: e.target.value }));
         break;
       case "q4":
-        setIsChecked(true);
-        setCheckedValue(prev => ({...prev, q4: e.target.value}));
+        if(checkedValue.q3 != null){setIsChecked(true)};
+        setCheckedValue((prev) => ({ ...prev, q4: e.target.value }));
         break;
       case "q5":
-        setCheckedValue(prev => ({...prev, q5: e.target.value}));
-      break;
-      default:
-        setIsAllChecked(true);
-        setCheckedValue(prev => ({...prev, q6: e.target.value}));
+        if(checkedValue.q6 != null){setIsAllChecked(true)};
+        setCheckedValue((prev) => ({ ...prev, q5: e.target.value }));
         break;
-      
+      default:
+        if(checkedValue.q5 != null){setIsAllChecked(true)};
+        setCheckedValue((prev) => ({ ...prev, q6: e.target.value }));
+        break;
+    }
   };
-  }
-
-
 
   const countProgress = () => {
     let total = 1;
-    
-    for(var q in checkedValue){
-      if(checkedValue[q] !== null){
+
+    for (var q in checkedValue) {
+      if (checkedValue[q] !== null) {
         total += 1;
       }
     }
     setProgress(total);
-  }
+  };
 
-  useEffect(() => {countProgress()},[checkedValue]);
+  useEffect(() => {
+    countProgress();
+  }, [checkedValue]);
 
-  const formSubmit = async(e) => {
+  const formSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setJson ( await(
-      fetch(`http://127.0.0.1:8000/api/v1/category/?gender=${gender}&q1=${checkedValue.q1}&q2=${checkedValue.q2}&q3=${checkedValue.q3}&q4=${checkedValue.q4}&q5=${checkedValue.q5}&q6=${checkedValue.q6}`)
-    .then(res => {
-      if(res.status === 404){
-        navigate('/404');
-      }
-      return res.json();
-    })
-    .catch(error => console.log(error))
-    ));
-  
+    setJson(
+      await fetch(
+        `https://scscproject-engname.com/api/v1/category/?gender=${gender}&q1=${checkedValue.q1}&q2=${checkedValue.q2}&q3=${checkedValue.q3}&q4=${checkedValue.q4}&q5=${checkedValue.q5}&q6=${checkedValue.q6}`
+      )
+        .then((res) => {
+          if (res.status === 404) {
+            navigate("/404");
+          }
+          return res.json();
+        })
+        .catch((error) => console.log(error))
+    );
+
     setIsDetail(true);
-    };
+  };
 
-  
-  
-
-  return (isLoading ? <Loading/> :
-  <>
-    <ProgressBar progress={progress} />
-    <StyledQuestionForm>
-      <form
-        onChange={checkRadio}
-        onSubmit ={formSubmit}
-        id="category" 
-        action="http://127.0.0.1:8000/api/v1/category"
-        method="get"
-      > 
-        {/* 성별 전달 */}
-        <fieldset className="inactive">
-          <label>
-              <input type="radio" name="gender" value={gender} checked={true}/>
-          </label>
-        </fieldset>
-        {/* 1-2질문 */}
-        <fieldset
-          className={num === 1 ? "topQuestion" : "topQuestion inactive"}
+  return isLoading ? (
+    <Loading />
+  ) : (
+    <>
+      <ProgressBar progress={progress} />
+      <StyledQuestionForm>
+        <form
+          onChange={checkRadio}
+          onSubmit={formSubmit}
+          id="category"
+          action="https://scscproject-engname.com/api/v1/category"
+          method="get"
         >
-          <legend>
-            <img src={traffic} alt="" />
-            <span>{data[0].question}</span>
-          </legend>
-          <div className="radiowrap">
-            <label className="first">
-              <input
-                className="first"
-                type="radio"
-                name={data[0].name}
-                value="-2"
-              />
-              비동의<span></span>
-            </label>
+          {/* 성별 전달 */}
+          <fieldset className="inactive">
             <label>
-              <input
-                className="second"
-                type="radio"
-                name={data[0].name}
-                value="-1"
-              />
-              <span></span>
+              <input type="radio" name="gender" value={gender} checked={true} />
             </label>
-            <label>
-              <input
-                className="third"
-                type="radio"
-                name={data[0].name}
-                value="0"
-              />
-              <span></span>
-            </label>
-            <label>
-              <input
-                className="fourth"
-                type="radio"
-                name={data[0].name}
-                value="1"
-              />
-              <span></span>
-            </label>
-            <label className="fifth">
-              <input
-                className="fifth"
-                type="radio"
-                name={data[0].name}
-                value="2"
-              />
-              <span></span>동의
-            </label>
-          </div>
-        </fieldset>
+          </fieldset>
+          {/* 1-2질문 */}
+          <fieldset
+            className={num === 1 ? "topQuestion" : "topQuestion inactive"}
+          >
+            <legend>
+              <img src={traffic} alt="" />
+              <span>{data[0].question}</span>
+            </legend>
+            <div className="radiowrap">
+              <span className="disagree">비동의</span>
+              <label className="first">
+                <input
+                  className="first"
+                  type="radio"
+                  name={data[0].name}
+                  value="-2"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="second"
+                  type="radio"
+                  name={data[0].name}
+                  value="-1"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="third"
+                  type="radio"
+                  name={data[0].name}
+                  value="0"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="fourth"
+                  type="radio"
+                  name={data[0].name}
+                  value="1"
+                />
+                <span></span>
+              </label>
+              <label className="fifth">
+                <input
+                  className="fifth"
+                  type="radio"
+                  name={data[0].name}
+                  value="2"
+                />
+                <span></span>
+              </label>
+              <span className="agree">동의</span>
+            </div>
+          </fieldset>
 
-        <fieldset
-          className={num === 1 ? "bottomQuestion" : "bottomQuestion inactive"}
-        >
-          <legend>
-            <img src={traffic} alt="" />
-            <span>{data[1].question}</span>
-          </legend>
-          <div className="radiowrap">
-            <label className="first">
-              <input
-                className="first"
-                type="radio"
-                name={data[1].name}
-                value="-2"
-              />
-              비동의<span></span>
-            </label>
-            <label>
-              <input
-                className="second"
-                type="radio"
-                name={data[1].name}
-                value="-1"
-              />
-              <span></span>
-            </label>
-            <label>
-              <input
-                className="third"
-                type="radio"
-                name={data[1].name}
-                value="0"
-              />
-              <span></span>
-            </label>
-            <label>
-              <input
-                className="fourth"
-                type="radio"
-                name={data[1].name}
-                value="1"
-              />
-              <span></span>
-            </label>
-            <label className="fifth">
-              <input
-                className="fifth"
-                type="radio"
-                name={data[1].name}
-                value="2"
-              />
-              <span></span>동의
-            </label>
-          </div>
-        </fieldset>
+          <fieldset
+            className={num === 1 ? "bottomQuestion" : "bottomQuestion inactive"}
+          >
+            <legend>
+              <img src={traffic} alt="" />
+              <span>{data[1].question}</span>
+            </legend>
+            <div className="radiowrap">
+            <span className="disagree">비동의</span>
+              <label className="first">
+                <input
+                  className="first"
+                  type="radio"
+                  name={data[1].name}
+                  value="-2"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="second"
+                  type="radio"
+                  name={data[1].name}
+                  value="-1"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="third"
+                  type="radio"
+                  name={data[1].name}
+                  value="0"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="fourth"
+                  type="radio"
+                  name={data[1].name}
+                  value="1"
+                />
+                <span></span>
+              </label>
+              <label className="fifth">
+                <input
+                  className="fifth"
+                  type="radio"
+                  name={data[1].name}
+                  value="2"
+                />
+                <span></span>
+              </label>
+              <span className="agree">동의</span>
+            </div>
+          </fieldset>
 
-        {/* 3-4질문 */}
-        <fieldset
-          className={num === 2 ? "topQuestion" : "topQuestion inactive"}
-        >
-          <legend>
-            <img src={traffic} alt="" />
-            <span>{data[2].question}</span>
-          </legend>
-          <div className="radiowrap">
-            <label className="first">
-              <input
-                className="first"
-                type="radio"
-                name={data[2].name}
-                value="-2"
-              />
-              비동의<span></span>
-            </label>
-            <label>
-              <input
-                className="second"
-                type="radio"
-                name={data[2].name}
-                value="-1"
-              />
-              <span></span>
-            </label>
-            <label>
-              <input
-                className="third"
-                type="radio"
-                name={data[2].name}
-                value="0"
-              />
-              <span></span>
-            </label>
-            <label>
-              <input
-                className="fourth"
-                type="radio"
-                name={data[2].name}
-                value="1"
-              />
-              <span></span>
-            </label>
-            <label className="fifth">
-              <input
-                className="fifth"
-                type="radio"
-                name={data[2].name}
-                value="2"
-              />
-              <span></span>동의
-            </label>
-          </div>
-        </fieldset>
+          {/* 3-4질문 */}
+          <fieldset
+            className={num === 2 ? "topQuestion" : "topQuestion inactive"}
+          >
+            <legend>
+              <img src={traffic} alt="" />
+              <span>{data[2].question}</span>
+            </legend>
+            <div className="radiowrap">
+            <span className="disagree">비동의</span>
+              <label className="first">
+                <input
+                  className="first"
+                  type="radio"
+                  name={data[2].name}
+                  value="-2"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="second"
+                  type="radio"
+                  name={data[2].name}
+                  value="-1"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="third"
+                  type="radio"
+                  name={data[2].name}
+                  value="0"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="fourth"
+                  type="radio"
+                  name={data[2].name}
+                  value="1"
+                />
+                <span></span>
+              </label>
+              <label className="fifth">
+                <input
+                  className="fifth"
+                  type="radio"
+                  name={data[2].name}
+                  value="2"
+                />
+                <span></span>
+              </label>
+              <span className="agree">동의</span>
+            </div>
+          </fieldset>
 
-        <fieldset
-          className={num === 2 ? "bottomQuestion" : "bottomQuestion inactive"}
-        >
-          <legend>
-            <img src={traffic} alt="" />
-            <span>{data[3].question}</span>
-          </legend>
-          <div className="radiowrap">
-            <label className="first">
-              <input
-                className="first"
-                type="radio"
-                name={data[3].name}
-                value="-2"
-              />
-              비동의<span></span>
-            </label>
-            <label>
-              <input
-                className="second"
-                type="radio"
-                name={data[3].name}
-                value="-1"
-              />
-              <span></span>
-            </label>
-            <label>
-              <input
-                className="third"
-                type="radio"
-                name={data[3].name}
-                value="0"
-              />
-              <span></span>
-            </label>
-            <label>
-              <input
-                className="fourth"
-                type="radio"
-                name={data[3].name}
-                value="1"
-              />
-              <span></span>
-            </label>
-            <label className="fifth">
-              <input
-                className="fifth"
-                type="radio"
-                name={data[3].name}
-                value="2"
-              />
-              <span></span>동의
-            </label>
-          </div>
-        </fieldset>
+          <fieldset
+            className={num === 2 ? "bottomQuestion" : "bottomQuestion inactive"}
+          >
+            <legend>
+              <img src={traffic} alt="" />
+              <span>{data[3].question}</span>
+            </legend>
+            <div className="radiowrap">
+            <span className="disagree">비동의</span>
+              <label className="first">
+                <input
+                  className="first"
+                  type="radio"
+                  name={data[3].name}
+                  value="-2"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="second"
+                  type="radio"
+                  name={data[3].name}
+                  value="-1"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="third"
+                  type="radio"
+                  name={data[3].name}
+                  value="0"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="fourth"
+                  type="radio"
+                  name={data[3].name}
+                  value="1"
+                />
+                <span></span>
+              </label>
+              <label className="fifth">
+                <input
+                  className="fifth"
+                  type="radio"
+                  name={data[3].name}
+                  value="2"
+                />
+                <span></span>
+              </label>
+              <span className="agree">동의</span>
+            </div>
+          </fieldset>
 
-        {/* 5-6질문 */}
-        <fieldset
-          className={num === 3 ? "topQuestion" : "topQuestion inactive"}
-        >
-          <legend>
-            <img src={traffic} alt="" />
-            <span>{data[4].question}</span>
-          </legend>
-          <div className="radiowrap">
-            <label className="first">
-              <input
-                className="first"
-                type="radio"
-                name={data[4].name}
-                value="-2"
-              />
-              비동의<span></span>
-            </label>
-            <label>
-              <input
-                className="second"
-                type="radio"
-                name={data[4].name}
-                value="-1"
-              />
-              <span></span>
-            </label>
-            <label>
-              <input
-                className="third"
-                type="radio"
-                name={data[4].name}
-                value="0"
-              />
-              <span></span>
-            </label>
-            <label>
-              <input
-                className="fourth"
-                type="radio"
-                name={data[4].name}
-                value="1"
-              />
-              <span></span>
-            </label>
-            <label className="fifth">
-              <input
-                className="fifth"
-                type="radio"
-                name={data[4].name}
-                value="2"
-              />
-              <span></span>동의
-            </label>
-          </div>
-        </fieldset>
+          {/* 5-6질문 */}
+          <fieldset
+            className={num === 3 ? "topQuestion" : "topQuestion inactive"}
+          >
+            <legend>
+              <img src={traffic} alt="" />
+              <span>{data[4].question}</span>
+            </legend>
+            <div className="radiowrap">
+              <span className="disagree">비동의</span>
+              <label className="first">
+                <input
+                  className="first"
+                  type="radio"
+                  name={data[4].name}
+                  value="-2"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="second"
+                  type="radio"
+                  name={data[4].name}
+                  value="-1"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="third"
+                  type="radio"
+                  name={data[4].name}
+                  value="0"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="fourth"
+                  type="radio"
+                  name={data[4].name}
+                  value="1"
+                />
+                <span></span>
+              </label>
+              <label className="fifth">
+                <input
+                  className="fifth"
+                  type="radio"
+                  name={data[4].name}
+                  value="2"
+                />
+                <span></span>
+              </label>
+              <span className="agree">동의</span>
+            </div>
+          </fieldset>
 
-        <fieldset
-          className={num === 3 ? "bottomQuestion" : "bottomQuestion inactive"}
-        >
-          <legend>
-            <img src={traffic} alt="" />
-            <span>{data[5].question}</span>
-          </legend>
-          <div className="radiowrap">
-            <label className="first">
-              <input
-                className="first"
-                type="radio"
-                name={data[5].name}
-                value="-2"
-              />
-              비동의<span></span>
-            </label>
-            <label>
-              <input
-                className="second"
-                type="radio"
-                name={data[5].name}
-                value="-1"
-              />
-              <span></span>
-            </label>
-            <label>
-              <input
-                className="third"
-                type="radio"
-                name={data[5].name}
-                value="0"
-              />
-              <span></span>
-            </label>
-            <label>
-              <input
-                className="fourth"
-                type="radio"
-                name={data[5].name}
-                value="1"
-              />
-              <span></span>
-            </label>
-            <label className="fifth">
-              <input
-                className="fifth"
-                type="radio"
-                name={data[5].name}
-                value="2"
-              />
-              <span></span>동의
-            </label>
-          </div>
-        </fieldset>
+          <fieldset
+            className={num === 3 ? "bottomQuestion" : "bottomQuestion inactive"}
+          >
+            <legend>
+              <img src={traffic} alt="" />
+              <span>{data[5].question}</span>
+            </legend>
+            <div className="radiowrap">
+            <span className="disagree">비동의</span>
+              <label className="first">
+                <input
+                  className="first"
+                  type="radio"
+                  name={data[5].name}
+                  value="-2"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="second"
+                  type="radio"
+                  name={data[5].name}
+                  value="-1"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="third"
+                  type="radio"
+                  name={data[5].name}
+                  value="0"
+                />
+                <span></span>
+              </label>
+              <label>
+                <input
+                  className="fourth"
+                  type="radio"
+                  name={data[5].name}
+                  value="1"
+                />
+                <span></span>
+              </label>
+              <label className="fifth">
+                <input
+                  className="fifth"
+                  type="radio"
+                  name={data[5].name}
+                  value="2"
+                />
+                <span></span>
+              </label>
+              <span className="agree">동의</span>
+            </div>
+          </fieldset>
 
+          <button
+            type="button"
+            onClick={incrementNum}
+            className={!isChecked && "inactive"}
+          >
+            <span>다음으로</span>
+            <img src={arrow} alt="" />
+          </button>
+        </form>
         <button
-          type="button"
-          onClick={incrementNum}
-          className={!isChecked && "inactive"}
-        >
-          <span>다음으로</span>
-          <img src={arrow} alt="" />
-        </button>
-
-        
-      </form>
-      <button
-        form="category"
+          form="category"
           type="submit"
           className={!isAllChecked && "inactive"}
         >
           <span>다음으로</span>
           <img src={arrow} alt="" />
         </button>
-    </StyledQuestionForm>
-  </>
+      </StyledQuestionForm>
+    </>
   );
 }
 
@@ -476,12 +500,12 @@ const StyledQuestionForm = styled.div`
   }
   & .topQuestion {
     position: absolute;
-    top: 13vh;
+    top: 10vh;
   }
 
   & .bottomQuestion {
     position: absolute;
-    top: 48vh;
+    top: 44vh;
   }
   & legend {
     position: absolute;
@@ -489,7 +513,6 @@ const StyledQuestionForm = styled.div`
     height: 13rem;
     left: 50%;
     transform: translate(-50%, 50%);
-    top: -5rem;
     background: #ffffff;
     box-shadow: 0px 3px 5px rgba(152, 152, 152, 0.24);
     border-radius: 15px;
@@ -517,21 +540,34 @@ const StyledQuestionForm = styled.div`
   }
   & .radiowrap {
     position: absolute;
-    top: 15.5rem;
-    left: -1rem;
+    top: 20rem;
     transform: translate(-50%, 50%);
-    width: 30rem;
+    width: 97vw;
+    left: 50%;
+    max-width: 35rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     font-family: "Pretendard-SemiBold";
+
   }
   & .radiowrap label.first {
     color: ${(props) => props.theme.colors.Engpink};
     font-size: 1.5rem;
+    margin-left: -5px;
   }
   & .radiowrap label.fifth {
+    color: ${(props) => props.theme.colors.Enggreen};
+    font-size: 1.5rem;
+  }
+
+  & .radiowrap span.disagree {
+    color: ${(props) => props.theme.colors.Engpink};
+    font-size: 1.5rem;
+  }
+
+  & .radiowrap span.agree {
     color: ${(props) => props.theme.colors.Enggreen};
     font-size: 1.5rem;
   }

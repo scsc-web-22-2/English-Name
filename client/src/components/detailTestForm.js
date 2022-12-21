@@ -181,7 +181,7 @@ const StyledDetailTestForm = styled.div`
     background-color: #FFFFFF;
     vertical-align: middle;
     height: 3rem;
-    
+    color: ${(props) => props.theme.colors.Engblack};
     line-height: 3rem;
     border-radius: 0 0 15px 15px;
     z-index: 1;
